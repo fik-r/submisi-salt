@@ -1,0 +1,30 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+}
+
+android {
+    namespace 'com.example.usecase'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 24
+        targetSdk 33
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+}
+
+dependencies {
+    implementation project(path: ':domain:abstraction')
+    implementation project(path: ':domain:model')
+    implementation project(path: ':common')
+
+    implementation(libs.coroutines)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.junit.ext)
+    androidTestImplementation(libs.espresso.core)
+    testImplementation(libs.bundles.mockk)
+}
